@@ -4,7 +4,7 @@ import os, shutil
 
 import esbinsteon
 
-dest = 'etc/insteon.yaml'
+dest = '/etc/insteon.yaml'
 cf = os.path.join(os.path.dirname(esbinsteon.__file__),'config','insteon.yaml')
 
 if not os.path.exists(dest):
