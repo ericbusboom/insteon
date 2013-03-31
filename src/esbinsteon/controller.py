@@ -167,14 +167,13 @@ class Controller(object):
         
         for queue in queues:
             os.system("at -l -q {} | xargs atrm".format(queue))
-        
-            
+
     def schedule(self):
         import os
 
         self.del_queues()
 
         for c in self.commands():
-            sc = "echo 'insteon_switch --{oo} {switch}' | at -q {queue} {time}".format(**c)
+            sc = "echo '/usr/local/bin/insteon_switch --{oo} {switch}' | at -q {queue} {time}".format(**c)
             os.system(sc)
                     

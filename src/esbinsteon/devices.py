@@ -42,6 +42,9 @@ class InsteonDevice(object):
         api.request("POST", url, urllib.urlencode({}), headers)
         response = api.getresponse()
         data = response.read()
+        
+        time.sleep(1)
+        
         return url
 
     def on(self):
@@ -99,6 +102,8 @@ class X10Device(object):
         response = api.getresponse()
 
         data = response.read()
+        
+        time.sleep(1)
 
     def on(self):
         self.send('on')
