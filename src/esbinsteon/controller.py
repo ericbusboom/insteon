@@ -166,7 +166,7 @@ class Controller(object):
         queues = set([ c['queue'] for c in self.commands() ])
         
         for queue in queues:
-            os.system("at -l -q {} | awk '{print $1}' | xargs atrm".format(queue))
+            os.system("at -l -q {} | awk '\{print $1\}' | xargs atrm".format(queue))
 
     def schedule(self):
         import os
