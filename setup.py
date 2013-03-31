@@ -8,5 +8,6 @@ setup(name='Insteon',
       url='http://busboom.org',
       packages=['esbinsteon'],
       package_dir={'esbinsteon':'src/esbinsteon'},
+      package_data={'esbinsteon': ['config/*']},
       scripts=['scripts/insteon_schedule','scripts/insteon_switch']
      )

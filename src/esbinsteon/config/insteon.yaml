@@ -1,0 +1,39 @@
+city: Los Angeles
+tz: America/Los_Angeles
+host: insteon
+switches:
+    lights: [B2,B3,B4,B5]
+    livingroom: 1E.3F.0D
+    study: [B12,B13]
+    desk: B12
+    stairs: B5
+    frontlight: 1E.EF.E1
+    backlight: 1E.F1.48
+    outside: B6,B7
+    garage: B8
+    fountain: B1
+    pbed: J1
+    lawn: J2
+    orchard: J3
+    yard: J4
+    herbs: j5
+    fence: j6
+    splanter: j7
+    nplanter: j8
+    rosebed: j9
+    frontplanters: j10
+    avocado: j11
+    jungle: j12
+    frontyard: j13
+    driveway: j14
+    frontdrip: j15
+    parkway: j16
+schedule:
+    #-   {switch: lawn,queue: w, from: '5:00', to: + 5}
+    #-   {switch: orchard,queue: w,from: + 0,to: + 5,if: 'dow in [1,3,5]'}
+    -   {switch: frontlight, queue: l, from: now + 1, to: '11:15' }
+    -   {switch: backlight, queue: l, from: now + 1,to: '11:15' }
+    -   {switch: study, queue: l, from: now + 1 ,to: '11:20' }        
+    
+        
+    
