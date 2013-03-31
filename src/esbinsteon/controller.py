@@ -174,6 +174,6 @@ class Controller(object):
         self.del_queues()
 
         for c in self.commands():
-            sc = "echo '/usr/local/bin/insteon_switch --{oo} {switch}' | at -q {queue} {time}".format(**c)
+            sc = "echo 'env insteon_switch --{oo} {switch}' | at -q {queue} {time}".format(**c)
             os.system(sc)
                     
