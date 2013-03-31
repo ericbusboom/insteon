@@ -1,0 +1,11 @@
+#! /bin/env python 
+import sys
+import esbinsteon
+from time import sleep
+
+import datetime
+s = esbinsteon.Controller('/etc/insteon.yaml')
+#print datetime.datetime.now(),   s.sun_times()
+
+
+s.schedule()

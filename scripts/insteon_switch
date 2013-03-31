@@ -1,0 +1,28 @@
+#! /bin/env python 
+import sys
+import esbinsteon
+import argparse
+from time import sleep
+
+import datetime
+s = esbinsteon.Controller('/etc/insteon.yaml')
+
+parser = argparse.ArgumentParser(description='Process some integers.')
+
+parser.add_argument('switches', nargs='+', help='which switches to toggle')
+parser.add_argument('--on', '-o', dest='oo', action='store_const', const='on', help='Turn switch on')
+parser.add_argument('--off', '-f', dest='oo', action='store_const', const='off', help='Turn switch off')
+parser.add_argument('--offafter', '-a', type=int, help='Turn off after a number of minutes')
+
+args = parser.parse_args()
+
+if args.oo == 'on':
+    s.on(args.switches)
+elif args.oo == 'off':
+    s.off(args.switches)
+    
+if args.offafter:
+    from time import sleep
+    sleep(args.offafter)
+    s.off(args.switches)
+    
