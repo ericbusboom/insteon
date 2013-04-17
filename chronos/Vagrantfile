@@ -1,0 +1,19 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Run for testing & Dev: 
+# sudo chef-solo -c /tmp/vagrant-chef-1/solo.rb  -j /tmp/vagrant-chef-1/dna.json  -o askbot::postgres
+
+
+Vagrant::Config.run do |config|
+
+  config.vm.box = "precise64"
+  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+
+  config.vm.network :hostonly, "192.168.33.90"
+
+  Vagrant::Config.run do |config|
+    config.vm.provision :shell, :path => "install.sh"
+  end
+
+end
