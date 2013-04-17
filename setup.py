@@ -12,6 +12,8 @@ setup(name='Insteon',
       scripts=['scripts/insteon_schedule','scripts/insteon_switch', 'scripts/insteon_install'],
       install_requires=[
             'pyephem',
-            'PyYAML'
+            'PyYAML',
+            'dateutil'
+            
         ],
      )
