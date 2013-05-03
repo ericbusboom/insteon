@@ -7,5 +7,13 @@ import datetime
 s = esbinsteon.Controller('/etc/insteon.yaml')
 #print datetime.datetime.now(),   s.sun_times()
 
+parser = argparse.ArgumentParser(description='Create /bin/at jobs for the schedule')
 
-s.schedule()
+parser.add_argument('--print', '-p', dest='print_only', action='store_const', const='on', help="Print, don't schedule")
+parser.add_argument('--unschedule', '-u', action='store_const', const='on', help="Unschedule all tasks")
+args = parser.parse_args()
+
+if arg.unschedule:
+    s.del_queues()
+else:
+    s.schedule(print_only=args.print_only)

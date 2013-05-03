@@ -52,13 +52,15 @@ class Controller(object):
         import re
         
         if isinstance(name, basestring):
+            
+            if re.match('[\w\d]+\.[\w\d]+\.[\w\d]+', name):
+                return [InsteonDevice(self.host,name)]
+        
             if re.match('\w\d+', name):
                 g = re.match('(\w)(\d+)', name)
                 return  [X10Device(self.host,g.group(1).lower(),g.group(2))]
                
-            if re.match('[\w\d]+\.[\w\d]+\.[\w\d]+', name):
-                return [InsteonDevice(self.host,name)]
-        
+
         if not isinstance(name, (list, tuple)):
             names = [name]
         else:
@@ -103,6 +105,7 @@ class Controller(object):
         ts = ts.replace('sunset', ss.time().isoformat())
         ts = ts.replace('sunrise', sr.time().isoformat())
         ts = ts.replace('now', datetime.now().time().isoformat())
+    
         
         if '+' in ts or '-' in ts:
             parts = ts.split()
@@ -138,8 +141,12 @@ class Controller(object):
         commands = []
         last = None
         for e in self.config['schedule']:
-            dow = 2
             
+            dow = datetime.now().date().weekday()
+            ordinal = datetime.now().date().toordinal()
+            
+        
+            # For testing for day of week, other time variables. 
             if_ = e.get('if',False)
             if if_ and not eval(if_):
                 continue
@@ -168,12 +175,18 @@ class Controller(object):
         for queue in queues:
             os.system("at -l -q {} | awk '{{print $1}}' | xargs atrm".format(queue))
 
-    def schedule(self):
+    def schedule(self, print_only=False):
         import os
 
-        self.del_queues()
-
+        if not print_only:
+            self.del_queues()
+            
         for c in self.commands():
+           
             sc = "echo 'env insteon_switch --{oo} {switch}' | at -q {queue} {time}".format(**c)
-            os.system(sc)
+            
+            if print_only:
+                print sc
+            else:
+                os.system(sc)
                     

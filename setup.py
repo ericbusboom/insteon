@@ -13,7 +13,7 @@ setup(name='Insteon',
       install_requires=[
             'pyephem',
             'PyYAML',
-            'dateutil'
+            'python-dateutil'
             
         ],
      )

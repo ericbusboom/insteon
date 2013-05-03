@@ -15,33 +15,32 @@ class InsteonDevice(object):
 
     command_code_map = {'on':11,'faston':12,'off':13,'fastoff':14,'status':19}
 
-    def __init__(self, host, device):
+    def __init__(self, hosts, device):
         import re
-        self.host = host
+        self.hosts = hosts
         self.device = device.replace('.','').upper()
 
-
+        if not isinstance(self.hosts, (list,tuple)):
+            self.hosts = [self.hosts]
 
     def send(self,command, level=100):
-        import time
-
-        api = httplib.HTTPConnection(self.host)
-
-        level = "%0.2X" % int(level / 100 * 255)
 
         address = ('0262' + 
                     self.device +
                     '0F' +
                     str(self.command_code_map[command]) + 
-                    level )+'=I=3'
+                     ("%0.2X" % int(level / 100 * 255)) )+'=I=3'
   
         headers = {}
         
         url = "/3?"+address
 
-        api.request("POST", url, urllib.urlencode({}), headers)
-        response = api.getresponse()
-        data = response.read()
+        for host in self.hosts:
+            api = httplib.HTTPConnection(host)
+
+            api.request("POST", url, urllib.urlencode({}), headers)
+            response = api.getresponse()
+            data = response.read()
         
         time.sleep(1)
         
@@ -67,10 +66,14 @@ class X10Device(object):
 
     command_code_map = {'on':280,'off':380,'bright':580,'dim':480,'allon':180,'alloff':680}
     
-    def __init__(self, host, house_code, unit_number):
+    def __init__(self, hosts, house_code, unit_number):
         self.house_code = house_code
         self.unit_number = int(unit_number)
-        self.host = host
+
+        self.hosts = hosts
+        
+        if not isinstance(self.hosts, (list,tuple)):
+            self.hosts = [self.hosts]
         
     def _make_command_components(self,command):
         address = ('0263' + 
@@ -84,25 +87,30 @@ class X10Device(object):
         return (address, command)     
                
     def send(self,command):
-        import time
-
-        api = httplib.HTTPConnection(self.host)
 
         (address, cmd) = self._make_command_components(command)
 
         headers = {}
+                
+        for host in self.hosts:
 
-        api.request("POST", "/3?"+address, urllib.urlencode({}), headers)
-        response = api.getresponse()
-        data = response.read()
-        
+            api = httplib.HTTPConnection(host)
+    
+            api.request("POST", "/3?"+address, urllib.urlencode({}), headers)
+            response = api.getresponse()
+            data = response.read()
+            
         time.sleep(1)
+    
+        for host in self.hosts:
 
-        api.request("POST", "/3?"+cmd, urllib.urlencode({}), headers)
-        response = api.getresponse()
-
-        data = response.read()
-        
+            api = httplib.HTTPConnection(host)
+            
+            api.request("POST", "/3?"+cmd, urllib.urlencode({}), headers)
+            response = api.getresponse()
+    
+            data = response.read()
+            
         time.sleep(1)
 
     def on(self):
