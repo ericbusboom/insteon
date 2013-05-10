@@ -31,18 +31,18 @@ switches:
 schedule:
 
     -   {switch: lawn, queue: w,          from: now + 1, to: + 10,  if: 'ordinal % 1 == 0'}  
-    -   {switch: orchard, queue: w,       from: + 0,    to: + 10,  if: 'ordinal % 3 == 0'} 
-    -   {switch: herbs, queue: w,         from: + 0,    to: + 8,   if: 'ordinal % 4 == 0'} 
-    -   {switch: fence, queue: w,         from: + 0,    to: + 8,   if: 'ordinal % 4 == 0'}  
-    -   {switch: splanter, queue: w,      from: + 0,    to: + 8,   if: 'ordinal % 1 == 0'} 
-    -   {switch: nplanter, queue: w,      from: + 0,    to: + 8,   if: 'ordinal % 1 == 0'} 
-    -   {switch: frontplanters, queue: w, from: + 0,    to: + 12,  if: 'ordinal % 2 == 0'}  
-    -   {switch: avocado, queue: w,       from: + 0,    to: + 20,  if: 'ordinal % 15 == 0'} 
-    -   {switch: jungle, queue: w,        from: + 0,    to: + 10,  if: 'ordinal % 4 == 0'} 
-    -   {switch: frontyard, queue: w,     from: + 0,    to: + 7,   if: 'ordinal % 4 == 0'} 
-    -   {switch: parkway, queue: w,       from: + 0,    to: + 8,   if: 'ordinal % 4 == 0'}      
-    -   {switch: frontdrip, queue: w,     from: + 0,    to: + 20,  if: 'ordinal % 1 == 0'}   
-    -   {switch: pbed,      queue: w,     from: + 0,    to: + 60,  if: 'ordinal % 2 == 0'}   
+    -   {switch: orchard, queue: w,       from: + 1,    to: + 10,  if: 'ordinal % 3 == 0'} 
+    -   {switch: herbs, queue: w,         from: + 1,    to: + 8,   if: 'ordinal % 4 == 0'} 
+    -   {switch: fence, queue: w,         from: + 1,    to: + 8,   if: 'ordinal % 4 == 0'}  
+    -   {switch: splanter, queue: w,      from: + 1,    to: + 8,   if: 'ordinal % 1 == 0'} 
+    -   {switch: nplanter, queue: w,      from: + 1,    to: + 8,   if: 'ordinal % 1 == 0'} 
+    -   {switch: frontplanters, queue: w, from: + 1,    to: + 12,  if: 'ordinal % 2 == 0'}  
+    -   {switch: avocado, queue: w,       from: + 1,    to: + 20,  if: 'ordinal % 15 == 0'} 
+    -   {switch: jungle, queue: w,        from: + 1,    to: + 10,  if: 'ordinal % 4 == 0'} 
+    -   {switch: frontyard, queue: w,     from: + 1,    to: + 7,   if: 'ordinal % 4 == 0'} 
+    -   {switch: parkway, queue: w,       from: + 1,    to: + 8,   if: 'ordinal % 4 == 0'}      
+    -   {switch: frontdrip, queue: w,     from: + 1,    to: + 20,  if: 'ordinal % 1 == 0'}   
+    -   {switch: pbed,      queue: w,     from: + 1,    to: + 60,  if: 'ordinal % 2 == 0'}   
     
     -   {switch: frontlight, queue: l, from: now + 1, to: '11:15' }
     -   {switch: backlight, queue: l, from: now + 1,to: '11:15' }
