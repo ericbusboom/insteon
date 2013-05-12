@@ -177,13 +177,17 @@ class Controller(object):
 
     def schedule(self, print_only=False):
         import os
+        import sys
+        import os
 
         if not print_only:
             self.del_queues()
+     
+        path = os.path.join(os.path.dirname(sys.argv[0]), 'insteon_switch')
             
         for c in self.commands():
            
-            sc = "echo 'env insteon_switch --{oo} {switch}' | at -q {queue} {time}".format(**c)
+            sc = "echo '{path} --{oo} {switch}' | at -q {queue} {time}".format(path=path, **c)
             
             if print_only:
                 print sc

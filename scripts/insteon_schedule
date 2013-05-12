@@ -2,8 +2,9 @@
 import sys
 import esbinsteon
 from time import sleep
-
+import argparse
 import datetime
+
 s = esbinsteon.Controller('/etc/insteon.yaml')
 #print datetime.datetime.now(),   s.sun_times()
 
@@ -13,7 +14,7 @@ parser.add_argument('--print', '-p', dest='print_only', action='store_const', co
 parser.add_argument('--unschedule', '-u', action='store_const', const='on', help="Unschedule all tasks")
 args = parser.parse_args()
 
-if arg.unschedule:
+if args.unschedule:
     s.del_queues()
 else:
     s.schedule(print_only=args.print_only)

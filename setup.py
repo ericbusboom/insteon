@@ -14,6 +14,5 @@ setup(name='Insteon',
             'pyephem',
             'PyYAML',
             'python-dateutil'
-            
         ],
      )

@@ -42,7 +42,7 @@ class InsteonDevice(object):
             response = api.getresponse()
             data = response.read()
         
-        time.sleep(1)
+        time.sleep(.5)
         
         return url
 
@@ -100,7 +100,7 @@ class X10Device(object):
             response = api.getresponse()
             data = response.read()
             
-        time.sleep(1)
+        time.sleep(.5)
     
         for host in self.hosts:
 
@@ -111,7 +111,7 @@ class X10Device(object):
     
             data = response.read()
             
-        time.sleep(1)
+        time.sleep(.5)
 
     def on(self):
         self.send('on')

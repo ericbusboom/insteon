@@ -1,6 +1,6 @@
 city: Los Angeles
 tz: America/Los_Angeles
-host: insteon
+host: [insteon, insteon2]
 switches:
     lights: [B2,B3,B4,B5]
     livingroom: 1E.3F.0D
