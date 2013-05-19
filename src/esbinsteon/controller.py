@@ -105,7 +105,7 @@ class Controller(object):
         ts = ts.replace('sunset', ss.time().isoformat())
         ts = ts.replace('sunrise', sr.time().isoformat())
         ts = ts.replace('now', datetime.now().time().isoformat())
-    
+
         
         if '+' in ts or '-' in ts:
             parts = ts.split()
