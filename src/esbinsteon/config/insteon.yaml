@@ -45,9 +45,9 @@ schedule:
     -   {switch: frontdrip, queue: w,     from: + 1,    to: + 20,  if: 'ordinal % 1 == 0'}   
     -   {switch: pbed,      queue: w,     from: + 1,    to: + 45,  if: 'ordinal % 3 == 0'}   
     
-    -   {switch: frontlight, queue: l, from: sunset, to: '11:15' }
-    -   {switch: backlight, queue: l,  from: sunset, to: '11:15' }
-    -   {switch: study, queue: l,      from: sunset ,to: '11:20' }        
+    -   {switch: frontlight, queue: l, from: sunset - 5,  to: '23:15' }
+    -   {switch: backlight, queue: l,  from: sunset,      to: '23:15' }
+    -   {switch: study, queue: l,      from: sunset - 20 ,to: '23:20' }        
     
         
     
