@@ -151,15 +151,24 @@ class Controller(object):
             if if_ and not eval(if_):
                 continue
             
-            start =  self.resolve_time(e['from'], start_time=last)
-            commands.append({'oo':'on','switch':e['switch'], 
-                             'time':start.time().strftime("%H:%M"), 
-                             'queue':e.get('queue','default')})
-            if e.get('to',False):
-                end =  self.resolve_time(e['to'], start_time=start)
-                commands.append({'oo':'off','switch':e['switch'], 
-                             'time':end.time().strftime("%H:%M"), 
-                             'queue':e.get('queue','default')})
+            if e.get('from', False):
+                start =  self.resolve_time(e['from'], start_time=last)
+            
+                commands.append({'oo':'on','switch':e['switch'], 
+                                 'time':start.time().strftime("%H:%M"), 
+                                 'queue':e.get('queue','default')})
+                             
+                if e.get('to',False):
+                    end =  self.resolve_time(e['to'], start_time=start)
+                    commands.append({'oo':'off','switch':e['switch'], 
+                                 'time':end.time().strftime("%H:%M"), 
+                                 'queue':e.get('queue','default')})
+            elif e.get('at'):
+                    end = at =  self.resolve_time(e['at'], start_time=last)
+                    dir_ = e.get('dir','on')
+                    commands.append({'oo':dir_,'switch':e['switch'], 
+                                 'time':end.time().strftime("%H:%M"), 
+                                 'queue':e.get('queue','default')})                
             else:
                 end = None
                 
